@@ -1,0 +1,58 @@
+Row
+-----------------------------------------------------------------
+
+### <b style="font-size: 22px;">Análisis de Adicción a Redes Sociales en Estudiantes</b>
+
+**Contexto:** La evolución tecnológica y la facilidad de conexión a internet han tenido un impacto determinante en la población estudiantil. Este estudio analiza los patrones de uso de redes sociales y sus efectos en estudiantes de diferentes niveles educativos.
+
+<style>
+  /* Estilos CSS para mejorar la presentación de las tablas */
+  table tbody tr {
+    height: 50px;
+  }
+  table td, table th {
+    vertical-align: middle !important;
+    padding: 12px 8px !important;
+  }
+</style>
+```{r tabla_estadisticos}
+# Librerías necesarias para crear tablas formateadas
+library(knitr)
+library(kableExtra)
+
+# Dataframe con estadísticos descriptivos de las variables principales
+tabla_estadisticos <- data.frame(
+  Variable = c("Edad", 
+               "Promedio de horas de uso diario", 
+               "Horas de sueño estimadas por noche",
+               "Autoevaluación de salud mental", 
+               "Conflictos en redes sociales", 
+               "Puntaje de adicción"),
+  M = c(20, 4.92, 6.87, 6.23, 2.85, 6.43),
+  Me = c(21, 4.80, 6.90, 6.00, 3.00, 7.00),
+  Mo = c(20, 4.70, 7.20, 6.00, 3.00, 7.00),
+  Rango = c(6, 7.00, 5.80, 5.00, 5.00, 7.00),
+  DE = c(1.40, 1.26, 1.13, 1.10, 0.95, 1.58),
+  CV = c(6.72, 25.56, 16.40, 17.75, 33.33, 24.57),
+  Q1_Q3 = c("19 - 22", "4.1 - 5.8", "6.0 - 7.7", 
+            "5.0 - 7.0", "2.0 - 4.0", "5.0 - 8.0")
+)
+
+# Tabla con formato HTML usando kable
+kable(tabla_estadisticos,
+      col.names = c("Variable", "M", "Me", "Mo", "Rango", "DE", "CV (%)", "Q1 - Q3"),
+      align = c("l", rep("c", 7)),  # Alineación
+      caption = "Estadísticos descriptivos de variables cuantitativas") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE,
+                font_size = 14)
+```
+
+Row
+-----------------------------------------------------------------
+
+### <b style="font-size: 24px;">Descripción</b>
+
+**Datos:** Muestra de 705 estudiantes de 6 países (India, Estados Unidos, Canadá, Dinamarca, Francia e Irlanda), con información sobre horas de uso diario, plataformas preferidas, calidad de sueño, salud mental y puntaje de adicción.
+
+![](barras_paises.png)

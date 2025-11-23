@@ -1,0 +1,23 @@
+---
+title: "Análisis de Adicción a Redes Sociales"
+output:
+    flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+---
+```{r setup, include=FALSE}
+# Configuración global
+library(flexdashboard)
+datos_estudiantes = read.table("datos_estudiantes.csv", 
+                                header=TRUE, sep=";", dec=".", 
+                                stringsAsFactors = TRUE)
+```
+
+Descripción General
+==================================================================
+```{r child="descripcion_general.Rmd"}
+```
+
+
+

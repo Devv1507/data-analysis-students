@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+.Rproj.user
+.Rhistory
+.RData
+.httr-oauth
+.DS_Store
+.quarto
+=======
 # --- Archivos de Historial y Sesión
 .Rhistory
 .RData
@@ -11,3 +19,4 @@
 # --- Archivos de paquetes ocultos ---
 .httr-oauth
 .DS_Store
+>>>>>>> cd86919cbc992fde313818991e9db4318feb4bed
