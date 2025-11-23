@@ -1,0 +1,13 @@
+# --- Archivos de Historial y Sesión
+.Rhistory
+.RData
+.Ruserdata
+
+# --- Archivos de configuración
+.Renviron
+.Rprofile
+.Rproj.user
+
+# --- Archivos de paquetes ocultos ---
+.httr-oauth
+.DS_Store
