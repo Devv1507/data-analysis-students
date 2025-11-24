@@ -1,9 +1,7 @@
 ### ¿Existe una diferencia en la mediana de la autoevaluación de salud mental entre hombres y mujeres en la muestra?
 
 El gráfico nos muestra que la mediana sobre la percepcion de la salud mental es el mismo para ambos géneros, con una autoevaluación central que se sitúa en 6 sobre 10.
-Sin embargo, hay una diferencia clave en la consistencia de las respuestas:
-Mujeres: El grupo de mujeres es más diverso en sus opiniones sobre su salud mental, sus autoevaluaciones están más dispersas o separadas, abarcando un rango de experiencias más amplio, aunque su mediana esté en 6 los valores se extienden desde 5 hasta 7.
-Hombres: El grupo de hombres es más consistente en sus respuestas y sus puntuaciones tienden a agruparse más fuertemente. La gran mayoría se califica con un puntaje de 6 o superior, lo que indica una percepción de la salud mental de buena a muy buena para la mayoría del grupo.
+Sin embargo el grupo de mujeres es más diverso en sus opiniones sobre su salud mental, sus autoevaluaciones están más dispersas o separadas, abarcando enun ranago de 5 a 7, mientras el grupo de hombres es más consistente en sus respuestas. La gran mayoría se califica con un puntaje de 6 o superior, lo que indica una percepción de la salud mental de muy buena para la mayoría del grupo.
 La percepción central es igual, pero las mujeres tienen opiniones más variadas (menos acuerdo entre ellas), mientras que los hombres tienden a agruparse sólidamente en la banda superior de la autoevaluación.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -13,6 +11,14 @@ datos_estudiantes = read.table("datos_estudiantes.csv", header= TRUE, sep= ",", 
 nuevosDatos = filter(datos_estudiantes, Gender %in% c("Female", "Male"))
 ggplot(datos_estudiantes, aes(x=Gender, y=Mental_Health_Score, fill= Gender)) +
   geom_boxplot() +
-  labs(x ="Género", y ="Salud Mental")
+  labs(x = "", y ="Auto-percepción de la Salud Mental") + 
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(color = "grey90"),  # líneas principales gris claro
+    panel.grid.minor = element_line(color = "grey90"),
+    panel.background = element_rect(fill = "white") # líneas menores más tenues
+        # fondo blanco
+  ) + 
+  guides(fill = "none")
 
 ```
