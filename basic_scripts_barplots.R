@@ -177,3 +177,34 @@ ggplot(Students.Social.Media.Addiction, aes(x = Age, fill = Gender_Label)) +
         legend.position = "top",
         panel.grid.minor = element_blank(),
         panel.grid.major.y = element_line(color = "gray90"))
+
+# ======================================================
+# Grafico de cajas Most_Used_Platform vs Addicted_Score
+# ======================================================
+datos_estudiantes = read.table("datos_estudiantes.csv", header= TRUE, sep= ",", dec=".", stringsAsFactors = TRUE)
+nuevosDatos = filter(datos_estudiantes, Most_Used_Platform %in% c("Instagram", "Facebook", "YouTube", "WhatsApp", "Twitter", "TikTok", "Snapchat", "LinkedIn", "WeChat"))
+ggplot(nuevosDatos, aes(x=Most_Used_Platform, y=Addicted_Score, fill= Most_Used_Platform)) +
+  geom_boxplot() +
+  labs(x = "", y ="Puntaje de adiccion") + 
+  theme_minimal() +
+  scale_fill_brewer(palette = "Pastel2") +
+  theme(legend.position = "none") +
+  theme(axis.line = element_line(color = "grey90")) 
+
+
+# ======================================================
+# Grafico de cajas Gender vs Mental_Health_Score
+# ======================================================
+datos_estudiantes = read.table("datos_estudiantes.csv", header= TRUE, sep= ",", dec=".", stringsAsFactors = TRUE)
+nuevosDatos = filter(datos_estudiantes, Gender %in% c("Female", "Male"))
+ggplot(datos_estudiantes, aes(x=Gender, y=Mental_Health_Score, fill= Gender)) +
+  geom_boxplot() +
+  labs(x = "", y ="Auto-percepción de la Salud Mental") + 
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(color = "grey90"),  # líneas principales gris claro
+    panel.grid.minor = element_line(color = "grey90"),
+    panel.background = element_rect(fill = "white") # líneas menores más tenues
+    # fondo blanco
+  ) + 
+  guides(fill = "none")

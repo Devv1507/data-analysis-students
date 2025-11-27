@@ -1,24 +1,12 @@
-### ¿Existe una diferencia en la mediana de la autoevaluación de salud mental entre hombres y mujeres en la muestra?
+### <b style="font-size: 22px;">Impacto de la Plataforma en la Salud</b>
 
-El gráfico nos muestra que la mediana sobre la percepcion de la salud mental es el mismo para ambos géneros, con una autoevaluación central que se sitúa en 6 sobre 10.
-Sin embargo el grupo de mujeres es más diverso en sus opiniones sobre su salud mental, sus autoevaluaciones están más dispersas o separadas, abarcando enun ranago de 5 a 7, mientras el grupo de hombres es más consistente en sus respuestas. La gran mayoría se califica con un puntaje de 6 o superior, lo que indica una percepción de la salud mental de muy buena para la mayoría del grupo.
+**¿Existe una diferencia en la mediana de la autoevaluación de salud mental entre hombres y mujeres en la muestra?** El gráfico nos muestra que la mediana sobre la percepcion de la salud mental es el mismo para ambos géneros, con una autoevaluación central que se sitúa en $6/10$.
+Sin embargo el grupo de mujeres es más diverso en sus opiniones sobre su salud mental, sus autoevaluaciones están más dispersas o separadas, abarcando en un rango de $5-7$, mientras el grupo de hombres es más consistente en sus respuestas. La gran mayoría se califica con un puntaje $> 6$, lo que indica una percepción de la salud mental de muy buena para la mayoría del grupo.
 La percepción central es igual, pero las mujeres tienen opiniones más variadas (menos acuerdo entre ellas), mientras que los hombres tienden a agruparse sólidamente en la banda superior de la autoevaluación.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(ggplot2)
-library(dplyr)
-datos_estudiantes = read.table("datos_estudiantes.csv", header= TRUE, sep= ",", dec=".", stringsAsFactors = TRUE)
-nuevosDatos = filter(datos_estudiantes, Gender %in% c("Female", "Male"))
-ggplot(datos_estudiantes, aes(x=Gender, y=Mental_Health_Score, fill= Gender)) +
-  geom_boxplot() +
-  labs(x = "", y ="Auto-percepción de la Salud Mental") + 
-  theme_minimal() +
-  theme(
-    panel.grid.major = element_line(color = "grey90"),  # líneas principales gris claro
-    panel.grid.minor = element_line(color = "grey90"),
-    panel.background = element_rect(fill = "white") # líneas menores más tenues
-        # fondo blanco
-  ) + 
-  guides(fill = "none")
+<p align="center">
+  <img src="barras_salud.png" width="40%">
+</p>
 
-```
+Row
+----------------------------------------------------------

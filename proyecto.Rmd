@@ -19,5 +19,14 @@ Descripción General
 ```{r child="descripcion_general.Rmd"}
 ```
 
+Impacto en la Salud
+==================================================================
+```{r child="analisis_impacto_salud.Rmd"}
+```
+
+Impacto en la Adicción
+==================================================================
+```{r child="analisis_impacto_adiccion.Rmd"}
+```
 
 
