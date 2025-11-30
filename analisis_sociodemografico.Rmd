@@ -1,6 +1,12 @@
-Column {data-width=500}
+Row
 -----------------------------------------------------------------
 
+
+### Distribución de Edad por Género
+
+```{r, echo=FALSE, results='asis'}
+cat('<div style="position: relative;">')
+```
 ```{r setup-sociodemografico, echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
@@ -27,11 +33,15 @@ datos_estudiantes <- datos_estudiantes |>
       levels = c("Secundaria", "Pregrado", "Posgrado"))
   )
 ```
-
-### Distribución de Edad por Género
+```{r, echo=FALSE, results='asis'}
+cat('</div>')
+```
 
 La pirámide poblacional muestra la distribución de edades de los estudiantes encuestados según su género. Este tipo de gráfico permite visualizar la estructura demográfica de la muestra, identificando patrones en la composición por edad y género.
 
+```{r, echo=FALSE, results='asis'}
+cat('<div style="position: relative;">')
+```
 ```{r piramide-poblacional, echo=FALSE, fig.height=7, fig.align='center', message=FALSE, warning=FALSE}
 # Crear etiquetas con conteos
 datos_con_etiquetas <- datos_estudiantes %>%
@@ -59,22 +69,32 @@ ggplot(datos_con_etiquetas, aes(x = Age, fill = Gender_Label)) +
         panel.grid.minor = element_blank(),
         panel.grid.major.y = element_line(color = "gray90"))
 ```
+```{r, echo=FALSE, results='asis'}
+cat('</div>')
+```
 
 La pirámide muestra una distribución casi equitativa entre géneros, con **353 mujeres** y **352 hombres**. La mayoría de los estudiantes se encuentran en el rango de edad entre 18 y 24 años, típico de estudiantes universitarios. Se observa una concentración particularmente alta alrededor de los 19-21 años, que corresponde a estudiantes de pregrado.
 
-Column {data-width=500}
+Row
 -----------------------------------------------------------------
 
 ### Estado Civil por Nivel Académico
-
+```{r, echo=FALSE, results='asis'}
+cat('<div style="position: relative;">')
+```
 ```{r setup-tabla-cruzada, echo=FALSE, message=FALSE, warning=FALSE}
 # Tabla cruzada
 tabla_cruzada <- table(datos_estudiantes$Academic_Level,
                        datos_estudiantes$Relationship_Status)
 ```
+```{r, echo=FALSE, results='asis'}
+cat('</div>')
+```
 
 **Tabla cruzada: nivel académico vs estado civil**
-
+```{r, echo=FALSE, results='asis'}
+cat('<div style="position: relative;">')
+```
 ```{r tabla-cruzada-estado-civil, echo=FALSE, message=FALSE, warning=FALSE}
 # Porcentajes por nivel académico (fila)
 tabla_porcentajes <- prop.table(tabla_cruzada, margin = 1) * 100
@@ -108,7 +128,9 @@ kable(tabla_horizontal,
                      "Complicado" = 2,
                      " "          = 1))
 ```
-
+```{r, echo=FALSE, results='asis'}
+cat('</div>')
+```
 La tabla presenta para cada nivel académico los porcentajes de estudiantes en cada estado civil. Hay una gran frecuencia en los niveles académicos superiores como el pregrado y el posgrado en comparación de secundaria. Se destaca que una pequeña parte de la población tiene secundaria como nivel académico y se encuentra en un estado civil complicado.
 
 <br>
@@ -116,7 +138,9 @@ La tabla presenta para cada nivel académico los porcentajes de estudiantes en c
 **Distribución del estado civil por nivel académico**
 
 El gráfico muestra la distribución de estudiantes según su estado civil de acuerdo al nivel académico que cada uno de ellos tiene. Con él, se puede destacar que dentro de la población prima el estado civil soltero/a frente al resto.
-
+```{r, echo=FALSE, results='asis'}
+cat('<div style="position: relative;">')
+```
 ```{r grafico-estado-academico, echo=FALSE, fig.height=4, fig.align='center', message=FALSE, warning=FALSE}
 # Datos para el gráfico
 datos_grafico <- as.data.frame(tabla_cruzada)
@@ -135,4 +159,7 @@ ggplot(datos_grafico,
   theme(axis.text.x  = element_text(angle = 0, hjust = 0.5, size = 10),
         plot.title   = element_text(hjust = 0.5, face = "bold", size = 13),
         legend.position = "bottom")
+```
+```{r, echo=FALSE, results='asis'}
+cat('</div>')
 ```

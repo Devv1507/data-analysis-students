@@ -2,7 +2,7 @@
 title: "Análisis de Adicción a Redes Sociales"
 output:
     flexdashboard::flex_dashboard:
-    orientation: rows
+    orientation: columns
     vertical_layout: scroll
     social: menu
     source_code: embed
