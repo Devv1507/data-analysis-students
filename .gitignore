@@ -4,7 +4,7 @@
 .httr-oauth
 .DS_Store
 .quarto
-=======
+
 # --- Archivos de Historial y Sesión
 .Rhistory
 .RData
@@ -20,3 +20,4 @@
 .DS_Store
 
 .html
+*.html
