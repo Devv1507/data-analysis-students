@@ -75,6 +75,56 @@ cat('</div>')
 
 La pirámide muestra una distribución casi equitativa entre géneros, con **353 mujeres** y **352 hombres**. La mayoría de los estudiantes se encuentran en el rango de edad entre 18 y 24 años, típico de estudiantes universitarios. Se observa una concentración particularmente alta alrededor de los 19-21 años, que corresponde a estudiantes de pregrado.
 
+
+**Comparación del uso diario de redes sociales**
+
+<div style="position: relative;">
+
+```{r box-plots-demograficos, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(patchwork)
+
+# Traducir género
+datos_estudiantes$Genero <- ifelse(datos_estudiantes$Gender == "Female", "Femenino", "Masculino")
+
+# Crear rangos de edad
+datos_estudiantes$Rango_Edad <- cut(datos_estudiantes$Age, 
+                                     breaks = c(16, 20, 24), 
+                                     labels = c("17-20", "21-24"),
+                                     include.lowest = TRUE)
+
+# Gráfico A: Por género
+plot_A <- ggplot(datos_estudiantes, aes(x = Genero, y = Avg_Daily_Usage_Hours, fill = Genero)) +
+  geom_boxplot(width = 0.5, outlier.shape = 16, outlier.size = 2) +
+  scale_fill_manual(values = c("Femenino" = "#F8A5A5", "Masculino" = "#A5C4E8")) +
+  labs(x = "Género", y = "Horas promedio de uso diario") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    axis.title = element_text(size = 11),
+    axis.text = element_text(size = 10)
+  )
+
+# Gráfico B: Por rango de edad
+plot_B <- ggplot(datos_estudiantes, aes(x = Rango_Edad, y = Avg_Daily_Usage_Hours, fill = Rango_Edad)) +
+  geom_boxplot(width = 0.5, outlier.shape = 16, outlier.size = 2) +
+  scale_fill_manual(values = c("17-20" = "#F8A5A5", "21-24" = "#A5C4E8")) +
+  labs(x = "Rango de edad", y = "Horas promedio de uso diario") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    axis.title = element_text(size = 11),
+    axis.text = element_text(size = 10)
+  )
+
+# Combinar gráficos lado a lado
+plot_A + plot_B
+```
+</div>
+
 Row
 -----------------------------------------------------------------
 
