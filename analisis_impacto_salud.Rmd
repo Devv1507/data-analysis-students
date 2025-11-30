@@ -24,9 +24,15 @@ En este gráfico se observa que los datos para cada grado de salud mental están
 
 <div style="position: relative;">
 
-<p align="center">
-  <img src="statics/autoevluacion_horas_sueno.png" style="width:70%; max-width:100%;">
-</p>
+```{r, fig.align='center'}
+ggplot(datos_estudiantes, aes(x = Sleep_Hours_Per_Night, y = Mental_Health_Score)) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(
+    x = "Horas de sueño",
+    y = "Autoevaluación de Salud Mental (1-10)") +
+  theme_minimal()
+```
 
 </div>
 

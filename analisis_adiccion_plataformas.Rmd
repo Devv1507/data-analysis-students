@@ -49,8 +49,8 @@ cat('<div style="position: relative;">')
 ```
 ```{r, fig.align='center'}
 ggplot(datos_estudiantes, aes(x = Sleep_Hours_Per_Night, y = Avg_Daily_Usage_Hours)) +
-  geom_jitter(colour = "lightblue") +
-  geom_smooth(method = "lm", colour = "red") +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, colour = "red") +
   theme_minimal() +
   labs(x = "Horas de sueño",
        y = "Horas de uso")

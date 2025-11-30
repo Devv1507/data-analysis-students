@@ -248,6 +248,22 @@ ggplot(datos_estudiantes, aes(x = Sleep_Hours_Per_Night, y = Mental_Health_Score
   theme_minimal()
 
 
+ggplot(
+  data = datos_estudiantes,
+  aes(x = Addicted_Score,
+      y = Conflicts_Over_Social_Media)
+) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "red"
+  ) +
+  labs(
+    x = "Puntuación de adicción",
+    y = "Conflictos de la red social"
+  )+
+  theme_minimal()
 
 
 

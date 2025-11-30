@@ -4,6 +4,8 @@ Column {data-width=500}
 ### <b style="font-size: 22px;">Impacto del uso de redes sociales en el ámbito académico</b>
 
 El gráfico muestra la proporción de estudiantes cuyo rendimiento académico se ve afectado (rojo) versus no afectado (verde) para cada plataforma. Whatsapp, Kakotalk, SnapChat e Instagram destacan como las plataformas con mayor proporción de afectación académica.
+<br>
+<br>
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
 ```

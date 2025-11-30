@@ -12,17 +12,17 @@ ggplot(
   aes(x = Addicted_Score,
       y = Conflicts_Over_Social_Media)
 ) +
-  geom_point() + 
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
   geom_smooth(
     method = "lm",
     se = FALSE,
-    color = "red",
-    linewidth = 1
+    color = "red"
   ) +
   labs(
     x = "Puntuación de adicción",
     y = "Conflictos de la red social"
-  )
+  )+
+  theme_minimal()
 
 ```
 </div>
