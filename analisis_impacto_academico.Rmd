@@ -31,7 +31,7 @@ ggplot(datos_grafico, aes(x = Plataforma, y = Frecuencia, fill = Afecta)) +
         plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
         legend.position = "bottom") +
   scale_fill_manual(values = c("No" = "#4CAF50", "Yes" = "#F44336"),
-                    labels = c("No" = "No", "Yes" = "Sí"))
+                    labels = c("No" = "No afecta", "Yes" = "Sí afecta"))
 ```
 ```{r, echo=FALSE, results='asis'}
 cat('</div>')

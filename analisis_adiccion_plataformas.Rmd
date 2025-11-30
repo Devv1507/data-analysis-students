@@ -67,7 +67,7 @@ En los datos referentes a la cantidad de horas de sueño de los sujetos, se obse
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
 ```
-```{r}
+```{r acumulado-bar-plot, echo=FALSE, fig.align='center'}
 ggplot(datos_estudiantes, aes(x= Sleep_Hours_Per_Night)) + 
   geom_histogram(fill = "skyblue", color = "black") + xlab("Horas de sueño") + 
   ylab("Frecuencia") + ##+ annotate("text", x = -Inf, y = Inf, label = "A", hjust = -0.5, vjust = 1.5, size = 6) 
