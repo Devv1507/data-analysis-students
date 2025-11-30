@@ -1,5 +1,7 @@
+Column {data-width=500}
+-----------------------------------------------------------------
 
-```{r}
+```{r setup-sociodemografico, echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 library(scales)
@@ -26,47 +28,54 @@ datos_estudiantes <- datos_estudiantes |>
   )
 ```
 
-Column {data-width=500}
------------------------------------------------------------------
+### Distribución de Edad por Género
 
-### <b style="font-size: 20px;">Estado civil por nivel académico</b>
+La pirámide poblacional muestra la distribución de edades de los estudiantes encuestados según su género. Este tipo de gráfico permite visualizar la estructura demográfica de la muestra, identificando patrones en la composición por edad y género.
 
-El gráfico muestra la distribución de estudiantes según su estado civil de acuerdo al nivel académico que cada uno de ellos tiene. Con él, se puede destacar que dentro de la población prima el estado civil soltero/a frente al resto.
+```{r piramide-poblacional, echo=FALSE, fig.height=7, fig.align='center', message=FALSE, warning=FALSE}
+# Crear etiquetas con conteos
+datos_con_etiquetas <- datos_estudiantes %>%
+  group_by(Gender) %>%
+  mutate(Gender_Label = paste0(Gender, " (", n(), ")")) %>%
+  ungroup()
 
-```{r grafico-estado-academico, echo=FALSE, fig.height=5, fig.align='center', message=FALSE, warning=FALSE}
-# Tabla cruzada
-tabla_cruzada <- table(datos_estudiantes$Academic_Level,
-                       datos_estudiantes$Relationship_Status)
-
-# Datos para el gráfico
-datos_grafico <- as.data.frame(tabla_cruzada)
-colnames(datos_grafico) <- c("Nivel_academico", "Estado_civil", "Frecuencia")
-
-# Gráfico de barras apiladas al 100%
-ggplot(datos_grafico,
-       aes(x = Nivel_academico, y = Frecuencia, fill = Estado_civil)) +
-  geom_bar(stat = "identity", position = "fill") +
-  scale_y_continuous(labels = scales::percent_format()) +
-  labs(title = "Distribución del estado civil por nivel académico (%)",
-       x = "Nivel académico",
-       y = "Porcentaje de estudiantes",
-       fill = "Estado civil") +
+# Pirámide de población con intervalos de 1 año y colores pasteles
+ggplot(datos_con_etiquetas, aes(x = Age, fill = Gender_Label)) +
+  geom_histogram(data = subset(datos_con_etiquetas, Gender == "Female"),
+                 aes(y = after_stat(count), fill = Gender_Label),
+                 binwidth = 1, alpha = 0.8, color = "black", linewidth = 0.5) +
+  geom_histogram(data = subset(datos_con_etiquetas, Gender == "Male"),
+                 aes(y = -after_stat(count), fill = Gender_Label),
+                 binwidth = 1, alpha = 0.8, color = "black", linewidth = 0.5) +
+  coord_flip() +
+  scale_fill_manual(values = c("Female (353)" = "#FFB3D9", "Male (352)" = "#B3D9FF")) +
+  scale_y_continuous(labels = abs, name = "Frecuencia") +
+  labs(x = "Edad",
+       fill = "Género") +
   theme_minimal() +
-  theme(axis.text.x  = element_text(angle = 0, hjust = 0.5, size = 10),
-        plot.title   = element_text(hjust = 0.5, face = "bold", size = 14),
-        legend.position = "bottom")
+  theme(plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+        plot.subtitle = element_text(size = 12, hjust = 0.5, color = "gray40"),
+        legend.position = "top",
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_line(color = "gray90"))
 ```
 
+La pirámide muestra una distribución casi equitativa entre géneros, con **353 mujeres** y **352 hombres**. La mayoría de los estudiantes se encuentran en el rango de edad entre 18 y 24 años, típico de estudiantes universitarios. Se observa una concentración particularmente alta alrededor de los 19-21 años, que corresponde a estudiantes de pregrado.
+
 Column {data-width=500}
 -----------------------------------------------------------------
 
-### <b style="font-size: 18px;">Tabla cruzada: nivel académico vs estado civil</b>
+### Estado Civil por Nivel Académico
 
-```{r tabla-cruzada-estado-civil, echo=FALSE, message=FALSE, warning=FALSE}
+```{r setup-tabla-cruzada, echo=FALSE, message=FALSE, warning=FALSE}
 # Tabla cruzada
 tabla_cruzada <- table(datos_estudiantes$Academic_Level,
                        datos_estudiantes$Relationship_Status)
+```
 
+**Tabla cruzada: nivel académico vs estado civil**
+
+```{r tabla-cruzada-estado-civil, echo=FALSE, message=FALSE, warning=FALSE}
 # Porcentajes por nivel académico (fila)
 tabla_porcentajes <- prop.table(tabla_cruzada, margin = 1) * 100
 
@@ -84,15 +93,15 @@ tabla_horizontal <- data.frame(
 
 kable(tabla_horizontal,
       col.names = c("Nivel académico",
-                    "Frecuencia", "%", 
-                    "Frecuencia", "%", 
-                    "Frecuencia", "%", 
+                    "Frecuencia", "%",
+                    "Frecuencia", "%",
+                    "Frecuencia", "%",
                     "Total"),
       align = c("l", "c", "c", "c", "c", "c", "c", "c"),
       row.names = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
                 full_width = TRUE,
-                font_size = 13) %>%
+                font_size = 11) %>%
   add_header_above(c(" "          = 1,
                      "Soltero/a"  = 2,
                      "En relación"= 2,
@@ -100,6 +109,30 @@ kable(tabla_horizontal,
                      " "          = 1))
 ```
 
-La tabla presenta para cada nivel académico los porcentajes de estudiantes en cada estado civil, junto con el total por cada nivel. Esto complementa al gráfico inicialmente presentado, de tal forma que permite ver los valores exactos de cada variable y comparar la distribución del estado civil entre Secundaria, Pregrado y Posgrado. 
+La tabla presenta para cada nivel académico los porcentajes de estudiantes en cada estado civil. Hay una gran frecuencia en los niveles académicos superiores como el pregrado y el posgrado en comparación de secundaria. Se destaca que una pequeña parte de la población tiene secundaria como nivel académico y se encuentra en un estado civil complicado.
 
-De lo cual podemos evidenciar que hay una gran frecuencia en los niveles académicos superiores como el pregrado y el posgrado en comparación de los pocos que se pueden visualizar en secundaria. Adicionalmente, se destaca que una pequeña parte la población tiene secundaria como nivel académico y se encuentra en un estado civil complicado. 
+<br>
+
+**Distribución del estado civil por nivel académico**
+
+El gráfico muestra la distribución de estudiantes según su estado civil de acuerdo al nivel académico que cada uno de ellos tiene. Con él, se puede destacar que dentro de la población prima el estado civil soltero/a frente al resto.
+
+```{r grafico-estado-academico, echo=FALSE, fig.height=4, fig.align='center', message=FALSE, warning=FALSE}
+# Datos para el gráfico
+datos_grafico <- as.data.frame(tabla_cruzada)
+colnames(datos_grafico) <- c("Nivel_academico", "Estado_civil", "Frecuencia")
+
+# Gráfico de barras apiladas al 100%
+ggplot(datos_grafico,
+       aes(x = Nivel_academico, y = Frecuencia, fill = Estado_civil)) +
+  geom_bar(stat = "identity", position = "fill") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(title = "Distribución del estado civil por nivel académico (%)",
+       x = "Nivel académico",
+       y = "Porcentaje de estudiantes",
+       fill = "Estado civil") +
+  theme_minimal() +
+  theme(axis.text.x  = element_text(angle = 0, hjust = 0.5, size = 10),
+        plot.title   = element_text(hjust = 0.5, face = "bold", size = 13),
+        legend.position = "bottom")
+```
