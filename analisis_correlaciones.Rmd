@@ -3,7 +3,14 @@ Row
 
 ### <b style="font-size: 22px;">Correlaciones entre las varianbles cuantitativas</b>
 
-**Contexto:** La evolución tecnológica y la facilidad de conexión a internet han tenido un impacto determinante en la población estudiantil. Este estudio analiza los patrones de uso de redes sociales y sus efectos en estudiantes de diferentes niveles educativos.
+**Contexto:** En esta sección se presenta la matriz de correlaciones, cuyo propósito es identificar las relaciones entre las variables cuantitativas incluidas en el estudio. Cada celda de la matriz muestra un valor numérico correspondiente al coeficiente de correlación de Pearson, el cual permite interpretar la fuerza y dirección de la relación lineal entre dos variables. Estos coeficientes se interpretan de la siguiente manera:
+
+Valores cercanos a +1: indican una correlación positiva fuerte o perfecta; es decir, cuando una variable aumenta, la otra también tiende a aumentar.
+
+Valores cercanos a -1: indican una correlación negativa fuerte o perfecta; es decir, cuando una variable aumenta, la otra tiende a disminuir.
+
+Valores cercanos a 0: indican que no existe una relación lineal clara entre las variables.
+
 
 
 <style>
