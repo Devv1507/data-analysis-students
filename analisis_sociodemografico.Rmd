@@ -2,7 +2,7 @@ Row
 -----------------------------------------------------------------
 
 
-### Distribución de Edad por Género
+### <b style="font-size: 22px;">Distribución de Edad por Género</b>
 
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
@@ -78,7 +78,10 @@ La pirámide muestra una distribución casi equitativa entre géneros, con **353
 Row
 -----------------------------------------------------------------
 
-### Estado Civil por Nivel Académico
+### <b style="font-size: 22px;">Estado Civil por Nivel Académico</b>
+
+La tabla presenta para cada nivel académico los porcentajes de estudiantes en cada estado civil. Hay una gran frecuencia en los niveles académicos superiores como el pregrado y el posgrado en comparación de secundaria. Se destaca que una pequeña parte de la población tiene secundaria como nivel académico y se encuentra en un estado civil complicado.
+
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
 ```
@@ -91,7 +94,6 @@ tabla_cruzada <- table(datos_estudiantes$Academic_Level,
 cat('</div>')
 ```
 
-**Tabla cruzada: nivel académico vs estado civil**
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
 ```
@@ -131,13 +133,11 @@ kable(tabla_horizontal,
 ```{r, echo=FALSE, results='asis'}
 cat('</div>')
 ```
-La tabla presenta para cada nivel académico los porcentajes de estudiantes en cada estado civil. Hay una gran frecuencia en los niveles académicos superiores como el pregrado y el posgrado en comparación de secundaria. Se destaca que una pequeña parte de la población tiene secundaria como nivel académico y se encuentra en un estado civil complicado.
+
 
 <br>
 
-**Distribución del estado civil por nivel académico**
-
-El gráfico muestra la distribución de estudiantes según su estado civil de acuerdo al nivel académico que cada uno de ellos tiene. Con él, se puede destacar que dentro de la población prima el estado civil soltero/a frente al resto.
+De manera homóloga, el gráfico muestra la distribución de estudiantes según su estado civil de acuerdo al nivel académico que cada uno de ellos tiene. Con él, se puede destacar que dentro de la población prima el estado civil soltero/a frente al resto.
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
 ```

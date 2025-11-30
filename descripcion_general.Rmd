@@ -51,7 +51,7 @@ kable(tabla_estadisticos,
 Row
 -----------------------------------------------------------------
 
-### <b style="font-size: 24px;">Descripción</b>
+### <b style="font-size: 22px;">Descripción</b>
 
 **Datos:** Muestra de 705 estudiantes de 6 países (India, Estados Unidos, Canadá, Dinamarca, Francia e Irlanda), con información sobre horas de uso diario, plataformas preferidas, calidad de sueño, salud mental y puntaje de adicción.
 
