@@ -38,3 +38,9 @@ Perfil Sociodemográfico
 ==================================================================
 ```{r child="analisis_dinamicas_relacionales.Rmd"}
 ```
+
+Dinámicas Relacionales
+==================================================================
+```{r child="analisis_dinamicas_relacionales.Rmd"}
+```
+
