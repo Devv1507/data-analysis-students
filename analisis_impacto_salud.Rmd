@@ -9,7 +9,7 @@ La percepción central es igual, pero las mujeres tienen opiniones más variadas
 <div style="position: relative;">
 
 <p align="center">
-  <img src="barras_salud.png" style="max-width:100%;">
+  <img src="statics/barras_salud.png" style="max-width:100%;">
 </p>
 
 </div>
@@ -25,7 +25,7 @@ En este gráfico se observa que los datos para cada grado de salud mental están
 <div style="position: relative;">
 
 <p align="center">
-  <img src="autoevluacion_horas_sueno.png" style="width:100%; max-width:100%;">
+  <img src="statics/autoevluacion_horas_sueno.png" style="width:100%; max-width:100%;">
 </p>
 
 </div>
