@@ -58,3 +58,23 @@ ggplot(datos_estudiantes, aes(x = Sleep_Hours_Per_Night, y = Avg_Daily_Usage_Hou
 ```{r, echo=FALSE, results='asis'}
 cat('</div>')
 ```
+
+
+**Distribución y variabilidad de las horas de sueño**
+
+En los datos referentes a la cantidad de horas de sueño de los sujetos, se observa que la distribución tiene una forma aproximadamente normal, ya que la mayoría de los valores se concentran alrededor del centro y las frecuencias disminuyen hacia los extremos. Además, obtuvimos un coeficiente de variación (CV) del 16,4%, lo que indica que los datos no se encuentran muy alejados del promedio de 6.8 horas. Esto confirma que la variabilidad es baja y que las horas de sueño entre los participantes son relativamente homogéneas.
+
+```{r, echo=FALSE, results='asis'}
+cat('<div style="position: relative;">')
+```
+```{r}
+ggplot(datos_estudiantes, aes(x= Sleep_Hours_Per_Night)) + 
+  geom_histogram(fill = "skyblue", color = "black") + xlab("Horas de sueño") + 
+  ylab("Frecuencia") + ##+ annotate("text", x = -Inf, y = Inf, label = "A", hjust = -0.5, vjust = 1.5, size = 6) 
+  theme_minimal()
+```
+```{r, echo=FALSE, results='asis'}
+cat('</div>')
+```
+
+
