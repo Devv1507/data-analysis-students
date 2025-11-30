@@ -208,3 +208,62 @@ ggplot(datos_estudiantes, aes(x=Gender, y=Mental_Health_Score, fill= Gender)) +
     # fondo blanco
   ) + 
   guides(fill = "none")
+
+
+
+
+
+
+
+
+
+
+
+# ======================================================
+# Tabla cruzada y barras apiladas de impacto académico
+# ======================================================
+
+library(kableExtra)
+
+# Crear tabla cruzada
+tabla_cruzada <- table(datos_estudiantes$Most_Used_Platform,
+                       datos_estudiantes$Affects_Academic_Performance)
+
+
+# Preparar datos para el gráfico
+datos_grafico <- as.data.frame(tabla_cruzada)
+colnames(datos_grafico) <- c("Plataforma", "Afecta", "Frecuencia")
+
+# Crear gráfico de barras apiladas al 100%
+ggplot(datos_grafico, aes(x = Plataforma, y = Frecuencia, fill = Afecta)) +
+  geom_bar(stat = "identity", position = "fill") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = NULL, y = "Auto-percepción de afectación académica",
+       fill = "Afecta Rendimiento") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        legend.position = "none") +  # <- Cambiar de "bottom" a "none"
+  scale_fill_manual(values = c("No" = "#4CAF50", "Yes" = "#F44336"),
+                    labels = c("No" = "No", "Yes" = "Sí"))
+
+
+# Calcular porcentajes por fila (para cada plataforma)
+tabla_porcentajes <- prop.table(tabla_cruzada, margin = 1) * 100
+
+# Combinar frecuencias y porcentajes
+tabla_display <- matrix(
+  paste0(tabla_cruzada, "\n(", round(tabla_porcentajes, 1), "%)"),
+  nrow = nrow(tabla_cruzada),
+  dimnames = dimnames(tabla_cruzada)
+)
+
+# Crear tabla formateada
+kable(tabla_display,
+      caption = "Tabla Cruzada: Plataforma vs Afectación Académica",
+      col.names = c("No", "Sí"),
+      align = 'c') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE,
+                font_size = 12) %>%
+  add_header_above(c("Plataforma" = 1, "Afecta Rendimiento Académico" = 2))
