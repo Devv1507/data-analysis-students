@@ -4,7 +4,9 @@ Column {data-width=500}
 ### <b style="font-size: 20px;">Afectación Académica por Plataforma</b>
 
 El gráfico muestra la proporción de estudiantes cuyo rendimiento académico se ve afectado (rojo) versus no afectado (verde) para cada plataforma. Whatsapp, Kakotalk, SnapChat e Instagram destacan como las plataformas con mayor proporción de afectación académica.
-
+```{r, echo=FALSE, results='asis'}
+cat('<div style="position: relative;">')
+```
 ```{r grafico-barras-apiladas, echo=FALSE, fig.height=5, fig.align='center'}
 library(ggplot2)
 
@@ -30,6 +32,9 @@ ggplot(datos_grafico, aes(x = Plataforma, y = Frecuencia, fill = Afecta)) +
         legend.position = "bottom") +
   scale_fill_manual(values = c("No" = "#4CAF50", "Yes" = "#F44336"),
                     labels = c("No" = "No", "Yes" = "Sí"))
+```
+```{r, echo=FALSE, results='asis'}
+cat('</div>')
 ```
 
 Column {data-width=500}
