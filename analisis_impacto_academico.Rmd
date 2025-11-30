@@ -1,0 +1,72 @@
+Column {data-width=500}
+-----------------------------------------------------------------
+
+### <b style="font-size: 20px;">Afectación Académica por Plataforma</b>
+
+El gráfico muestra la proporción de estudiantes cuyo rendimiento académico se ve afectado (rojo) versus no afectado (verde) para cada plataforma. Whatsapp, Kakotalk, SnapChat e Instagram destacan como las plataformas con mayor proporción de afectación académica.
+
+```{r grafico-barras-apiladas, echo=FALSE, fig.height=5, fig.align='center'}
+library(ggplot2)
+
+# Crear tabla cruzada
+tabla_cruzada <- table(datos_estudiantes$Most_Used_Platform,
+                        datos_estudiantes$Affects_Academic_Performance)
+
+# Preparar datos para el gráfico
+datos_grafico <- as.data.frame(tabla_cruzada)
+colnames(datos_grafico) <- c("Plataforma", "Afecta", "Frecuencia")
+
+# Crear gráfico de barras apiladas al 100%
+ggplot(datos_grafico, aes(x = Plataforma, y = Frecuencia, fill = Afecta)) +
+  geom_bar(stat = "identity", position = "fill") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(title = "Afectación Académica por Plataforma (%)",
+       x = "Plataforma Más Utilizada",
+       y = "Porcentaje de Estudiantes",
+       fill = "Afecta Rendimiento") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        legend.position = "bottom") +
+  scale_fill_manual(values = c("No" = "#4CAF50", "Yes" = "#F44336"),
+                    labels = c("No" = "No", "Yes" = "Sí"))
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------
+
+### <b style="font-size: 18px;">Tabla Cruzada: Plataforma vs Afectación Académica</b>
+
+```{r tabla-cruzada-academico, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+# Crear tabla cruzada (ya creada arriba, reutilizamos)
+tabla_cruzada <- table(datos_estudiantes$Most_Used_Platform,
+                        datos_estudiantes$Affects_Academic_Performance)
+
+# Calcular porcentajes por fila
+tabla_porcentajes <- prop.table(tabla_cruzada, margin = 1) * 100
+
+# Crear dataframe para tabla horizontal
+tabla_horizontal <- data.frame(
+  Plataforma = rownames(tabla_cruzada),
+  No_Freq = tabla_cruzada[, "No"],
+  No_Pct = paste0(round(tabla_porcentajes[, "No"], 1), "%"),
+  Si_Freq = tabla_cruzada[, "Yes"],
+  Si_Pct = paste0(round(tabla_porcentajes[, "Yes"], 1), "%"),
+  Total = tabla_cruzada[, "No"] + tabla_cruzada[, "Yes"]
+)
+
+# Crear tabla formateada
+kable(tabla_horizontal,
+      col.names = c("Plataforma", "Frecuencia", "%", "Frecuencia", "%", "Total"),
+      align = c('l', 'c', 'c', 'c', 'c', 'c'),
+      row.names = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE,
+                font_size = 13) %>%
+  add_header_above(c(" " = 1, "No Afecta" = 2, "Sí Afecta" = 2, " " = 1))
+```
+
+La tabla muestra las frecuencias absolutas y porcentajes de estudiantes según su plataforma más utilizada y si esta afecta su rendimiento académico. Destacan plataformas como **TikTok (93.5%)**, **WhatsApp (100%)**, **Instagram (69.1%)** y **Snapchat (92.3%)** con alta proporción de afectación académica, mientras que **LinkedIn**, **LINE** y **VKontakte** no muestran impacto negativo en el rendimiento académico.

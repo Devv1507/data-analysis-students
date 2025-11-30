@@ -10,7 +10,7 @@ output:
 # Configuración global
 library(flexdashboard)
 datos_estudiantes = read.table("datos_estudiantes.csv", 
-                                header=TRUE, sep=";", dec=".", 
+                                header=TRUE, sep=",", dec=".", 
                                 stringsAsFactors = TRUE)
 ```
 
@@ -19,14 +19,18 @@ Descripción General
 ```{r child="descripcion_general.Rmd"}
 ```
 
+Uso de Plataformas y Adicción
+==================================================================
+```{r child="analisis_adiccion_plataformas.Rmd"}
+```
+
 Impacto en la Salud
 ==================================================================
 ```{r child="analisis_impacto_salud.Rmd"}
 ```
 
-Impacto en la Adicción
+Impacto Académico
 ==================================================================
-```{r child="analisis_impacto_adiccion.Rmd"}
+```{r child="analisis_impacto_academico.Rmd"}
 ```
-
 
