@@ -1,6 +1,9 @@
+Column {data-width=500}
+-----------------------------------------------------------------
+
 ### <b style="font-size: 20px;">Adicción por Plataforma</b>
 
-En el gráfico podemos observar que la plataformas que genera mayor adicción en los estudiantes es TikTok, con una mediana de $8$ puntos, seguida de Instagram, Whatsapp, WeChat y Snapchat, todos con una mediana de $7$ puntos. También se evidencia que Snapchat, TikTok y Whatsapp presentan menor variabilidad a diferencia de Instagram y WeChat, cuyas cajas son poco compactas.
+En el gráfico podemos observar que la plataforma que genera mayor adicción en los estudiantes es TikTok, con una mediana de $8$ puntos, seguida de Instagram, Whatsapp, WeChat y Snapchat, todos con una mediana de $7$ puntos. También se evidencia que Snapchat, TikTok y Whatsapp presentan menor variabilidad a diferencia de Instagram y WeChat, cuyas cajas son poco compactas.
 
 ```{r grafico-adiccion-boxplot, echo=FALSE, fig.width=12, fig.height=6}
 library(ggplot2)
@@ -26,3 +29,21 @@ ggplot(datos_completos, aes(x=Most_Used_Platform, y=Addicted_Score, fill=Most_Us
         axis.text.x = element_text(angle = 45, hjust = 1, size = 10)) +
   theme(axis.line = element_line(color = "grey90"))
 ```
+
+Column {data-width=500}
+-----------------------------------------------------------------
+### <b style="font-size: 20px;">Relación entre horas de sueño y uso de redes sociales</b>
+
+**Interpretación:** La gráfica muestra la relación entre las horas de sueño y las horas promedio de uso de redes sociales entre los estudiantes. Se observa una asociación negativa entre horas de sueño y horas diarias de uso de redes sociales. En promedio, los estudiantes que duermen más tienden a usar menos las redes.
+
+Además, la dispersión de los datos indica que la mayoría de los estudiantes que duermen menos de 6 horas tienden a utilizar redes sociales durante 6 a 8 horas al día. En contraste, quienes duermen más de 7 horas suelen reducir considerablemente su tiempo de uso, ubicándose en un rango aproximado entre 3 y 5 horas.
+
+```{r}
+ggplot(datos_estudiantes, aes(x = Sleep_Hours_Per_Night, y = Avg_Daily_Usage_Hours)) +
+  geom_jitter(colour = "lightblue") +
+  geom_smooth(method = "lm", colour = "red") +
+  theme_minimal() +
+  labs(x = "Horas de sueño",
+       y = "Horas de uso")
+```
+
