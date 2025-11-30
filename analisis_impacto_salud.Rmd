@@ -25,7 +25,20 @@ En este gráfico se observa que los datos para cada grado de salud mental están
 <div style="position: relative;">
 
 <p align="center">
-  <img src="statics/autoevluacion_horas_sueno.png" style="width:100%; max-width:100%;">
+  <img src="statics/autoevluacion_horas_sueno.png" style="width:70%; max-width:100%;">
+</p>
+
+</div>
+
+
+### <b style="font-size: 22px;">Frecuencias de las autoevaluciones de la salud mental de los estudiantes.</b>
+
+Enl a autoevaluación de salud mental, vemos una distribución similar, con la mayor cantidad de datos concentrados en un valor alrededor de 6, con un CV de 17,7%, lo que también hace a los datos homogéneos y consistentes.
+
+<div style="position: relative;">
+
+<p align="center">
+  <img src="statics/barras_salud_mental.png" style="width:70%; max-width:100%;">
 </p>
 
 </div>
