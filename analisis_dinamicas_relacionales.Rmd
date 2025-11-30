@@ -10,7 +10,7 @@ Row
 --------------------------------------------------------------------
 ### <b style="font-size: 22px;">Matriz de Correlación Cuantitativa</b>
 
-La evolución tecnológica y la facilidad de conexión a internet han tenido un impacto determinante en la población estudiantil. Este estudio analiza los patrones de uso de redes sociales y sus efectos en estudiantes de diferentes niveles educativos.
+La matriz de correlaciones revela tres relaciones clave: primero, existe una correlación negativa muy fuerte entre el nivel de adicción y la salud mental (r = -0.95), lo que indica que a mayor adicción, peor es el estado de salud mental. Segundo, el nivel de adicción también muestra una correlación positiva muy alta con los conflictos generados por el uso de redes (r = 0.93), evidenciando que un uso más problemático se asocia con mayores tensiones interpersonales. Por último, el uso diario de redes presenta una correlación positiva fuerte con el nivel de adicción (r = 0.83), lo que sugiere que pasar más horas conectado incrementa significativamente el riesgo de comportamientos adictivos.
 
 ```{r cargar-correlaciones, echo=FALSE, message=FALSE, warning=FALSE}
 datos_estudiantes <- read.csv("datos_estudiantes.csv")
