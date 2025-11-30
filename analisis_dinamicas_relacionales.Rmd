@@ -35,6 +35,8 @@ Row
 
 La matriz de correlaciones revela tres relaciones clave: primero, existe una correlación negativa muy fuerte entre el nivel de adicción y la salud mental (r = -0.95), lo que indica que a mayor adicción, peor es el estado de salud mental. Segundo, el nivel de adicción también muestra una correlación positiva muy alta con los conflictos generados por el uso de redes (r = 0.93), evidenciando que un uso más problemático se asocia con mayores tensiones interpersonales. Por último, el uso diario de redes presenta una correlación positiva fuerte con el nivel de adicción (r = 0.83), lo que sugiere que pasar más horas conectado incrementa significativamente el riesgo de comportamientos adictivos.
 
+<div style="position: relative;">
+
 ```{r cargar-correlaciones, echo=FALSE, message=FALSE, warning=FALSE}
 datos_estudiantes <- read.csv("datos_estudiantes.csv")
 
@@ -72,5 +74,5 @@ rownames(x) <- colnames(x)  # también para las filas
 corrplot(x, method = "number")
 
 ```
-
+</div>
 
