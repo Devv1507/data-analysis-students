@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .Rproj.user
 .Rhistory
 .RData
@@ -19,6 +18,5 @@
 # --- Archivos de paquetes ocultos ---
 .httr-oauth
 .DS_Store
->>>>>>> cd86919cbc992fde313818991e9db4318feb4bed
 
 .html
