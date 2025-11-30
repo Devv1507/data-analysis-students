@@ -1,0 +1,105 @@
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(knitr)
+library(kableExtra)
+
+# Recodificar a español y ordenar los niveles de cada variable
+datos_estudiantes <- datos_estudiantes |>
+  mutate(
+    Relationship_Status = recode(Relationship_Status,
+      "Single"          = "Soltero/a",
+      "In Relationship" = "En relación",
+      "Complicated"     = "Complicado"
+    ),
+    Academic_Level = recode(Academic_Level,
+      "High School"    = "Secundaria",
+      "Undergraduate"  = "Pregrado",
+      "Graduate"       = "Posgrado"
+    ),
+    Relationship_Status = factor(Relationship_Status,
+      levels = c("Soltero/a", "En relación", "Complicado")),
+    Academic_Level = factor(Academic_Level,
+      levels = c("Secundaria", "Pregrado", "Posgrado"))
+  )
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------
+
+### <b style="font-size: 20px;">Estado civil por nivel académico</b>
+
+El gráfico muestra la distribución de estudiantes según su estado civil de acuerdo al nivel académico que cada uno de ellos tiene. Con él, se puede destacar que dentro de la población prima el estado civil soltero/a frente al resto.
+
+```{r grafico-estado-academico, echo=FALSE, fig.height=5, fig.align='center', message=FALSE, warning=FALSE}
+# Tabla cruzada
+tabla_cruzada <- table(datos_estudiantes$Academic_Level,
+                       datos_estudiantes$Relationship_Status)
+
+# Datos para el gráfico
+datos_grafico <- as.data.frame(tabla_cruzada)
+colnames(datos_grafico) <- c("Nivel_academico", "Estado_civil", "Frecuencia")
+
+# Gráfico de barras apiladas al 100%
+ggplot(datos_grafico,
+       aes(x = Nivel_academico, y = Frecuencia, fill = Estado_civil)) +
+  geom_bar(stat = "identity", position = "fill") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(title = "Distribución del estado civil por nivel académico (%)",
+       x = "Nivel académico",
+       y = "Porcentaje de estudiantes",
+       fill = "Estado civil") +
+  theme_minimal() +
+  theme(axis.text.x  = element_text(angle = 0, hjust = 0.5, size = 10),
+        plot.title   = element_text(hjust = 0.5, face = "bold", size = 14),
+        legend.position = "bottom")
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------
+
+### <b style="font-size: 18px;">Tabla cruzada: nivel académico vs estado civil</b>
+
+```{r tabla-cruzada-estado-civil, echo=FALSE, message=FALSE, warning=FALSE}
+# Tabla cruzada
+tabla_cruzada <- table(datos_estudiantes$Academic_Level,
+                       datos_estudiantes$Relationship_Status)
+
+# Porcentajes por nivel académico (fila)
+tabla_porcentajes <- prop.table(tabla_cruzada, margin = 1) * 100
+
+# Data frame horizontal
+tabla_horizontal <- data.frame(
+  Nivel_academico = rownames(tabla_cruzada),
+  Soltero_Freq    = tabla_cruzada[, "Soltero/a"],
+  Soltero_Pct     = paste0(round(tabla_porcentajes[, "Soltero/a"], 1), "%"),
+  EnRel_Freq      = tabla_cruzada[, "En relación"],
+  EnRel_Pct       = paste0(round(tabla_porcentajes[, "En relación"], 1), "%"),
+  Comp_Freq       = tabla_cruzada[, "Complicado"],
+  Comp_Pct        = paste0(round(tabla_porcentajes[, "Complicado"], 1), "%"),
+  Total           = rowSums(tabla_cruzada)
+)
+
+kable(tabla_horizontal,
+      col.names = c("Nivel académico",
+                    "Frecuencia", "%", 
+                    "Frecuencia", "%", 
+                    "Frecuencia", "%", 
+                    "Total"),
+      align = c("l", "c", "c", "c", "c", "c", "c", "c"),
+      row.names = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE,
+                font_size = 13) %>%
+  add_header_above(c(" "          = 1,
+                     "Soltero/a"  = 2,
+                     "En relación"= 2,
+                     "Complicado" = 2,
+                     " "          = 1))
+```
+
+La tabla presenta para cada nivel académico los porcentajes de estudiantes en cada estado civil, junto con el total por cada nivel. Esto complementa al gráfico inicialmente presentado, de tal forma que permite ver los valores exactos de cada variable y comparar la distribución del estado civil entre Secundaria, Pregrado y Posgrado. 
+
+De lo cual podemos evidenciar que hay una gran frecuencia en los niveles académicos superiores como el pregrado y el posgrado en comparación de los pocos que se pueden visualizar en secundaria. Adicionalmente, se destaca que una pequeña parte la población tiene secundaria como nivel académico y se encuentra en un estado civil complicado. 

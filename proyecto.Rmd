@@ -34,3 +34,7 @@ Impacto Académico
 ```{r child="analisis_impacto_academico.Rmd"}
 ```
 
+Perfil Sociodemográfico
+==================================================================
+```{r child="analisis_dinamicas_relacionales.Rmd"}
+```
