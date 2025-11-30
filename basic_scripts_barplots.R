@@ -19,7 +19,11 @@ summary(Students.Social.Media.Addiction$Age)
 # ==============================
 # Pie chart para Academic_Level
 # ==============================
-academic_data <- Students.Social.Media.Addiction %>%
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+
+academic_data <- datos_estudiantes %>%
   mutate(Academic_Level = recode(Academic_Level,
                                  "Graduate" = "Graduado",
                                  "High School" = "Secundaria",
@@ -28,20 +32,28 @@ academic_data <- Students.Social.Media.Addiction %>%
   mutate(prop = n / sum(n),
          label = paste0(Academic_Level, " (", scales::percent(prop, accuracy = 0.1), ")"))
 
-g1 <- ggplot(academic_data, aes(x = "", y = prop, fill = Academic_Level)) +
+pie1 <- ggplot(academic_data, aes(x = "", y = prop, fill = label)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
   coord_polar(theta = "y") +
-  geom_text(aes(label = label),
-            position = position_stack(vjust = 0.5),
-            size = 4) +
   scale_fill_brewer(palette = "Pastel1") +
+  labs(caption = "Nivel académico") +
   theme_void() +
-  theme(legend.position = "none")
+  theme(
+    legend.title = element_blank(),
+    legend.position = "right",
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.caption = element_text(
+      hjust = 0.5,
+      face = "bold",
+      size = 12,
+      margin = margin(t = 8)
+    )
+  )
 
 # ===========================================
 # Pie chart para Affects_Academic_Performance
 # ===========================================
-performance_data <- Students.Social.Media.Addiction %>%
+performance_data <- datos_estudiantes %>%
   mutate(Affects_Academic_Performance = recode(Affects_Academic_Performance,
                                                "Yes" = "Sí",
                                                "No" = "No")) %>%
@@ -49,19 +61,26 @@ performance_data <- Students.Social.Media.Addiction %>%
   mutate(prop = n / sum(n),
          label = paste0(Affects_Academic_Performance, " (", scales::percent(prop, accuracy = 0.1), ")"))
 
-g2 <- ggplot(performance_data, aes(x = "", y = prop, fill = Affects_Academic_Performance)) +
+pie2 <- ggplot(performance_data, aes(x = "", y = prop, fill = label)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
   coord_polar(theta = "y") +
-  geom_text(aes(label = label),
-            position = position_stack(vjust = 0.5),
-            size = 4) +
   scale_fill_brewer(palette = "Pastel2") +
+  labs(caption = "Impacto en el desempeño académico") +
   theme_void() +
-  theme(legend.position = "none")
+  theme(
+    legend.title = element_blank(),
+    legend.position = "right",
+    plot.caption = element_text(
+      hjust = 0.5,
+      face = "bold",
+      size = 12,
+      margin = margin(t = 8)
+    )
+  )
 
 
 # Concatenar en disposición horizontal
-grid.arrange(g1, g2, ncol = 2)
+pie1 + pie2
 
 
 # Poner A y B arriba a la izquierda
@@ -72,7 +91,7 @@ print(final_plot)
 # ===========================================
 # Bar chart para Affects_Academic_Performance
 # ===========================================
-platform_data <- Students.Social.Media.Addiction %>%
+platform_data <- datos_estudiantes %>%
   filter(!is.na(Most_Used_Platform)) %>%
   count(Most_Used_Platform) %>%
   arrange(desc(n)) %>%
@@ -92,13 +111,20 @@ ggplot(platform_data, aes(x = reorder(Platform, -Count), y = Count, fill = Platf
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+conteo_paises <- datos_estudiantes %>%
+  count(Country) %>%
+  filter(n >= 5)
 
-ggplot(top10, aes(x = reorder(Country_es, n), y = n)) +
-  geom_bar(stat = "identity", color = "black", width = 0.9,) +
-  scale_fill_brewer(palette = "Pastel2") +
+ggplot(conteo_paises, aes(x = reorder(Country, n), y = n, fill = n)) +
+  geom_bar(stat = "identity", color = "black") +
+  scale_fill_viridis_c() +
   theme_minimal() +
-  labs(x = "País",
-       y = "Número de usuarios")
+  labs(
+    x = "País",
+    y = "Número de usuarios",
+    fill = "Cantidad"
+  ) +
+  coord_flip()
 
 # =============================
 # Boxplot Academic vs Uso horas

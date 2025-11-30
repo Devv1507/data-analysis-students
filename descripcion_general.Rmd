@@ -3,10 +3,9 @@ Row
 
 ### <b style="font-size: 22px;">Análisis de Adicción a Redes Sociales en Estudiantes</b>
 
-**Contexto:** La evolución tecnológica y la facilidad de conexión a internet han tenido un impacto determinante en la población estudiantil. Este estudio analiza los patrones de uso de redes sociales y sus efectos en estudiantes de diferentes niveles educativos.
+La evolución tecnológica y la facilidad de conexión a internet han tenido un impacto determinante en la población estudiantil. Este estudio analiza los patrones de uso de redes sociales y sus efectos en estudiantes de diferentes niveles educativos.
 
 <style>
-  /* Estilos CSS para mejorar la presentación de las tablas */
   table tbody tr {
     height: 50px;
   }
@@ -53,6 +52,44 @@ Row
 
 ### <b style="font-size: 22px;">Descripción</b>
 
-**Datos:** Muestra de 705 estudiantes de 6 países (India, Estados Unidos, Canadá, Dinamarca, Francia e Irlanda), con información sobre horas de uso diario, plataformas preferidas, calidad de sueño, salud mental y puntaje de adicción.
+Muestra de 705 estudiantes de 6 países (India, Estados Unidos, Canadá, Dinamarca, Francia e Irlanda), con información sobre horas de uso diario, plataformas preferidas, calidad de sueño, salud mental y puntaje de adicción.
 
-![](barras_paises.png)
+
+<div style="position: relative;">
+
+```{r bar-plot, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+
+datos_estudiantes = read.table("datos_estudiantes.csv", 
+                                header=TRUE, sep=",", dec=".", 
+                                stringsAsFactors = TRUE)
+conteo_paises <- datos_estudiantes %>%
+  count(Country) %>%
+  filter(n >= 5)
+
+ggplot(conteo_paises, aes(x = reorder(Country, n), y = n, fill = n)) +
+  geom_bar(stat = "identity", color = "black") +
+  scale_fill_viridis_c() +
+  theme_minimal() +
+  labs(
+    x = "País",
+    y = "Número de usuarios",
+    fill = "Cantidad"
+  ) +
+  coord_flip()
+
+```
+</div>
+
+
+
+Entre las características de la muestra estudiada se observa que la mayoría de la muestra corresponde a una población  de estudiantes universitarios (incluyendo egresados), salvó a una proporción menor al 4% de estudiantes de secundaria. Por otro lado, se evidencia que 453 estudiantes (64.3%) consideran que el uso de redes sociales tiene un impacto directo en su desempeño académico
+
+<div style="position: relative;">
+
+<p align="center">
+  <img src="statics/pie_plots.png" style="max-width:100%;">
+</p>
+
+</div>
