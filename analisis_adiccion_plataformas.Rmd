@@ -1,0 +1,28 @@
+### <b style="font-size: 20px;">Adicción por Plataforma</b>
+
+En el gráfico podemos observar que la plataformas que genera mayor adicción en los estudiantes es TikTok, con una mediana de $8$ puntos, seguida de Instagram, Whatsapp, WeChat y Snapchat, todos con una mediana de $7$ puntos. También se evidencia que Snapchat, TikTok y Whatsapp presentan menor variabilidad a diferencia de Instagram y WeChat, cuyas cajas son poco compactas.
+
+```{r grafico-adiccion-boxplot, echo=FALSE, fig.width=12, fig.height=6}
+library(ggplot2)
+library(dplyr)
+library(RColorBrewer)
+
+# Asegurar que todas las plataformas estén incluidas
+# Limpiar datos y mantener todos los niveles del factor
+datos_completos <- datos_estudiantes %>%
+  filter(!is.na(Most_Used_Platform) & !is.na(Addicted_Score)) %>%
+  mutate(Most_Used_Platform = droplevels(Most_Used_Platform))
+
+# Generar paleta de colores para todas las plataformas
+n_plataformas <- length(unique(datos_completos$Most_Used_Platform))
+colores_pastel <- colorRampPalette(brewer.pal(8, "Pastel2"))(n_plataformas)
+
+ggplot(datos_completos, aes(x=Most_Used_Platform, y=Addicted_Score, fill=Most_Used_Platform)) +
+  geom_boxplot() +
+  labs(x = "", y = "Puntaje de adicción") +
+  theme_minimal() +
+  scale_fill_manual(values = colores_pastel) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 10)) +
+  theme(axis.line = element_line(color = "grey90"))
+```
