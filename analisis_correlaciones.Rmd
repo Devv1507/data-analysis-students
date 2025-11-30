@@ -1,5 +1,78 @@
 ---
 title: "analisis_correlaciones"
-output: html_document
+output: 
+
+ flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    source_code: embed
 ---
+
+Analisis Correlaciones
+================================================================================
+
+Row
+---------------------------------------------------------------------
+
+### <b style="font-size: 22px;">Correlaciones entre las varianbles cuantitativas</b>
+
+**Contexto:** La evolución tecnológica y la facilidad de conexión a internet han tenido un impacto determinante en la población estudiantil. Este estudio analiza los patrones de uso de redes sociales y sus efectos en estudiantes de diferentes niveles educativos.
+
+
+<style>
+  /* Estilos CSS para mejorar la presentación de las tablas */
+  table tbody tr {
+    height: 50px;
+  }
+  table td, table th {
+    vertical-align: middle !important;
+    padding: 12px 8px !important;
+  }
+</style>
+
+
+Row
+--------------------------------------------------------------------
+### <b style="font-size: 22px;">Matriz de Correlación Cuantitativa</b>
+
+
+
+```{r cargar-correlaciones, echo=FALSE, message=FALSE, warning=FALSE}
+datos_estudiantes <- read.csv("datos_estudiantes.csv")
+
+# Libreria necesaria para la elaboración de la matriz de correlación
+library(corrplot)
+
+# Calculamos la matriz de correlación únicamente con las variables numéricas todas estas cuantitivas
+# relevantes para el análisis (uso diario del celular, horas de sueño, salud mental, 
+# conflictos por redes sociales y nivel de adicción). La opción "complete.obs" asegura 
+# que solo se usen observaciones completas, es decir, casos sin datos faltantes. 
+# Luego, visualizamos la matriz de correlación utilizando corrplot con el método "number",
+# lo que permite ver directamente los valores numéricos de cada correlación.
+# Seleccionamos las variables de interés y creamos la matriz de correlación
+# Luego renombramos las columnas para que aparezcan en español en el gráfico.
+x <- cor(datos_estudiantes[, c(
+  "Avg_Daily_Usage_Hours",
+  "Sleep_Hours_Per_Night",
+  "Mental_Health_Score",
+  "Conflicts_Over_Social_Media",
+  "Addicted_Score"
+)], use = "complete.obs")
+
+# Renombramos las variables para que corrplot muestre los nombres en español
+colnames(x) <- c(
+  "Uso diario (horas)",
+  "Horas de sueño",
+  "Salud mental",
+  "Conflictos por redes",
+  "Nivel de adicción"
+)
+
+rownames(x) <- colnames(x)  # también para las filas
+
+# Graficamos la matriz mostrando los valores numéricos de cada correlación
+corrplot(x, method = "number")
+
+```
+
 
