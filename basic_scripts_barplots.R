@@ -210,6 +210,16 @@ ggplot(datos_estudiantes, aes(x=Gender, y=Mental_Health_Score, fill= Gender)) +
   guides(fill = "none")
 
 
+# ======================================================
+# Grafico de correlacion horas sueño - autoevluación
+# ======================================================
+ggplot(datos_estudiantes, aes(x = Sleep_Hours_Per_Night, y = Mental_Health_Score)) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) + # Jitter para separar puntos, alpha para transparencia
+  geom_smooth(method = "lm", se = FALSE, color = "red") + # Añade una línea de tendencia
+  labs(
+    x = "Horas de sueño",
+    y = "Autoevaluación de Salud Mental (1-10)") +
+  theme_minimal()
 
 
 
