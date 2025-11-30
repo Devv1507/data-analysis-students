@@ -78,6 +78,8 @@ La pirámide muestra una distribución casi equitativa entre géneros, con **353
 
 **Comparación del uso diario de redes sociales**
 
+Al realizar este tipo de comparaciones no se observan diferencias resaltables entre estas cohortes comparadas. Estas cohortes fueron definidas a partir de las distribuciones observadas en la piramide poblacional, en donde una gran parte de los encuestados se encuentra en un primer intervalo de 18-20 años y otra en un segundo intervalo de 21-24 años. 
+
 <div style="position: relative;">
 
 ```{r box-plots-demograficos, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
