@@ -40,12 +40,8 @@ Perfil Sociodemográfico
 ```{r child="analisis_sociodemografico.Rmd"}
 ```
 
-Dinámicas Relacionales
+Interacciones inter-variables
 ==================================================================
 ```{r child="analisis_dinamicas_relacionales.Rmd"}
 ```
 
-Correlaciones
-===================================================================
-```{r child="analisis_correlaciones.Rmd"}
-```
