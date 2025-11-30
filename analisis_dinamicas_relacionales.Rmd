@@ -4,8 +4,8 @@ Row
 
 Se observa una tendencia positiva, puesto que a medida que aumentan las puntuaciones de adicción obtenidas de los estudiantes, también tienden a aumentar los conflictos reportados por el uso de la red social. La línea de regresión en color rojo refuerza esta asociación, indicando que los estudiantes con niveles más altos de adicción suelen experimentar más tensiones sociales relacionados con su uso, lo cual sugiere que la adicción a las redes sociales podría ser un factor que afecta en las relaciones interpersonales.
 
-
-```{r}
+<div style="position: relative;">
+```{r scatter-plot-conflicts, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 ggplot(
   data = datos_estudiantes,
@@ -25,6 +25,7 @@ ggplot(
   )
 
 ```
+</div>
 
 
 
@@ -37,7 +38,7 @@ La matriz de correlaciones revela tres relaciones clave: primero, existe una cor
 
 <div style="position: relative;">
 
-```{r cargar-correlaciones, echo=FALSE, message=FALSE, warning=FALSE}
+```{r cargar-correlaciones, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
 datos_estudiantes <- read.csv("datos_estudiantes.csv")
 
 # Libreria necesaria para la elaboración de la matriz de correlación
