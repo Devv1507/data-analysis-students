@@ -3,6 +3,7 @@ title: "Análisis de Adicción a Redes Sociales"
 output:
     flexdashboard::flex_dashboard:
     orientation: rows
+    vertical_layout: scroll
     social: menu
     source_code: embed
 ---
@@ -44,7 +45,7 @@ Dinámicas Relacionales
 ```{r child="analisis_dinamicas_relacionales.Rmd"}
 ```
 
-Matriz de Correlaciones
+Correlaciones
 ===================================================================
 ```{r child="analisis_correlaciones.Rmd"}
 ```
