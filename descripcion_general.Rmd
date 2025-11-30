@@ -5,6 +5,8 @@ Row
 
 La evolución tecnológica y la facilidad de conexión a internet han tenido un impacto determinante en la población estudiantil. Este estudio analiza los patrones de uso de redes sociales y sus efectos en estudiantes de diferentes niveles educativos.
 
+**Estadísticos de variables cuantitativa**
+
 <style>
   table tbody tr {
     height: 50px;
@@ -40,8 +42,40 @@ tabla_estadisticos <- data.frame(
 # Tabla con formato HTML usando kable
 kable(tabla_estadisticos,
       col.names = c("Variable", "M", "Me", "Mo", "Rango", "DE", "CV (%)", "Q1 - Q3"),
-      align = c("l", rep("c", 7)),  # Alineación
-      caption = "Estadísticos descriptivos de variables cuantitativas") %>%
+      align = c("l", rep("c", 7))
+      ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE,
+                font_size = 14)
+```
+
+
+**Estadísticos de variables cualitativas**
+```{r tabla_cualitativas}
+# Tabla de frecuencias para variables cualitativas
+tabla_cualitativas <- data.frame(
+  Variable = c("Género", 
+               "Nivel educativo", 
+               "Plataforma más utilizada",
+               "Afecta desempeño académico", 
+               "Estado civil"),
+  Categorias = c("Femenino / Masculino",
+                 "Secundaria / Pregrado / Graduado",
+                 "Instagram / TikTok / Facebook / Otras",
+                 "Sí / No",
+                 "Soltero(a) / En relación / Complicado"),
+  Distribucion = c("353 (50.1%) / 352 (49.9%)",
+                   "27 (3.8%) / 353 (50.1%) / 325 (46.1%)",
+                   "249 (35.3%) / 154 (21.8%) / 123 (17.4%) / 179 (25.4%)",
+                   "453 (64.3%) / 252 (35.7%)",
+                   "384 (54.5%) / 289 (41.0%) / 32 (4.5%)"),
+  Moda = c("Femenino", "Pregrado", "Instagram", "Sí", "Soltero(a)")
+)
+
+kable(tabla_cualitativas,
+      col.names = c("Variable", "Categorías", "Distribución (n, %)", "Moda"),
+      align = c("l", "l", "l", "l")
+      ) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
                 full_width = TRUE,
                 font_size = 14)

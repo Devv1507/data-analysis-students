@@ -13,7 +13,7 @@ library(gridExtra)
 library(dplyr)
 library(ggplot2)
 
-summary(Students.Social.Media.Addiction$Age)
+summary(datos_estudiantes$Age)
 
 
 # ==============================
@@ -130,7 +130,7 @@ ggplot(conteo_paises, aes(x = reorder(Country, n), y = n, fill = n)) +
 # Boxplot Academic vs Uso horas
 # =============================
 
-academic_data <- Students.Social.Media.Addiction %>%
+academic_data <- datos_estudiantes %>%
   mutate(Academic_Level = recode(Academic_Level,
                                  "Graduate" = "Graduado",
                                  "High School" = "Secundaria",
@@ -151,10 +151,10 @@ ggplot(academic_data,
 
 
 aggregate(Avg_Daily_Usage_Hours ~ Academic_Level,
-          data = Students.Social.Media.Addiction,
+          data = datos_estudiantes,
           FUN = summary)
 
-Students.Social.Media.Addiction %>%
+datos_estudiantes %>%
   mutate(Academic_Level = recode(Academic_Level,
                                  "Graduate" = "Graduado",
                                  "High School" = "Secundaria",
@@ -178,17 +178,17 @@ Students.Social.Media.Addiction %>%
 
 
 # Crear etiquetas con conteos
-Students.Social.Media.Addiction <- Students.Social.Media.Addiction %>%
+datos_estudiantes <- datos_estudiantes %>%
   group_by(Gender) %>%
   mutate(Gender_Label = paste0(Gender, " (", n(), ")")) %>%
   ungroup()
 
 # Pirámide de población con intervalos de 2 años y colores pasteles
-ggplot(Students.Social.Media.Addiction, aes(x = Age, fill = Gender_Label)) +
-  geom_histogram(data = subset(Students.Social.Media.Addiction, Gender == "Female"),
+ggplot(datos_estudiantes, aes(x = Age, fill = Gender_Label)) +
+  geom_histogram(data = subset(datos_estudiantes, Gender == "Female"),
                  aes(y = after_stat(count), fill = Gender_Label), 
                  binwidth = 1, alpha = 0.8, color = "black", linewidth = 0.5) +
-  geom_histogram(data = subset(Students.Social.Media.Addiction, Gender == "Male"),
+  geom_histogram(data = subset(datos_estudiantes, Gender == "Male"),
                  aes(y = -after_stat(count), fill = Gender_Label), 
                  binwidth = 1, alpha = 0.8, color = "black", linewidth = 0.5) +
   coord_flip() +
