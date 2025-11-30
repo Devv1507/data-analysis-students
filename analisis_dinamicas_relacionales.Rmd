@@ -1,7 +1,30 @@
 Row
 -----
-### <b style="font-size: 22px;">Relación entre Conflictos y Uso diario de Redes sociales</b>
+### <b style="font-size: 22px;">Relación entre Conflictos y la Putuación de adicción</b>
 
+Se observa una tendencia positiva, puesto que a medida que aumentan las puntuaciones de adicción obtenidas de los estudiantes, también tienden a aumentar los conflictos reportados por el uso de la red social. La línea de regresión en color rojo refuerza esta asociación, indicando que los estudiantes con niveles más altos de adicción suelen experimentar más tensiones sociales relacionados con su uso, lo cual sugiere que la adicción a las redes sociales podría ser un factor que afecta en las relaciones interpersonales.
+
+
+```{r}
+library(ggplot2)
+ggplot(
+  data = datos_estudiantes,
+  aes(x = Addicted_Score,
+      y = Conflicts_Over_Social_Media)
+) +
+  geom_point() + 
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "red",
+    linewidth = 1
+  ) +
+  labs(
+    x = "Puntuación de adicción",
+    y = "Conflictos de la red social"
+  )
+
+```
 
 
 
