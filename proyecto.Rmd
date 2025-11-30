@@ -44,3 +44,7 @@ Dinámicas Relacionales
 ```{r child="analisis_dinamicas_relacionales.Rmd"}
 ```
 
+Matriz de Correlaciones
+===================================================================
+```{r child="analisis_correlaciones.Rmd"}
+```
