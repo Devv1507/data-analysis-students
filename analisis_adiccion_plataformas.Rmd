@@ -8,7 +8,7 @@ En el gráfico podemos observar que la plataforma que genera mayor adicción en 
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
 ```
-```{r grafico-adiccion-boxplot, echo=FALSE, fig.height=6, fig.align='center'}
+```{r grafico-adiccion-boxplot, echo=FALSE, fig.align='center'}
 library(ggplot2)
 library(dplyr)
 library(RColorBrewer)
@@ -47,7 +47,7 @@ Además, la dispersión de los datos indica que la mayoría de los estudiantes q
 ```{r, echo=FALSE, results='asis'}
 cat('<div style="position: relative;">')
 ```
-```{r}
+```{r, fig.align='center'}
 ggplot(datos_estudiantes, aes(x = Sleep_Hours_Per_Night, y = Avg_Daily_Usage_Hours)) +
   geom_jitter(colour = "lightblue") +
   geom_smooth(method = "lm", colour = "red") +
